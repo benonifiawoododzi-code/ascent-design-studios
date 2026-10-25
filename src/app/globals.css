@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #f5f2ec;
+  --charcoal: #262622;
+  --taupe: #b2a594;
+  --stone: #dcd5ca;
+  --olive: #626754;
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-charcoal: var(--charcoal);
+  --color-taupe: var(--taupe);
+  --color-stone: var(--stone);
+  --color-olive: var(--olive);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+}
+
+html {
+  background: var(--ivory);
+}
+
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.7;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+::selection {
+  background: var(--olive);
+  color: var(--ivory);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--charcoal);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  background: var(--ivory);
+  color: var(--charcoal);
+  padding: 0.6rem 1rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@keyframes ascend {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ascend {
+  animation: ascend 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ascend-1 {
+  animation-delay: 0.08s;
+}
+
+.ascend-2 {
+  animation-delay: 0.18s;
+}
+
+.ascend-3 {
+  animation-delay: 0.3s;
+}
+
+.ascend-4 {
+  animation-delay: 0.42s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ascend,
+  .ascend-1,
+  .ascend-2,
+  .ascend-3,
+  .ascend-4 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
