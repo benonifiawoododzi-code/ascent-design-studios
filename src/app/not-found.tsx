@@ -8,17 +8,15 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-[100svh] flex-col justify-end bg-charcoal px-6 pt-32 pb-20 text-ivory md:px-10 lg:px-16">
-      <p className="text-[0.72rem] tracking-[0.22em] uppercase">404</p>
-      <h1 className="mt-4 max-w-3xl font-serif text-[clamp(3rem,7vw,6rem)] font-light text-ivory">
-        This page is not on the plan.
+    <div className="mx-auto flex min-h-[100svh] w-full max-w-[1520px] flex-col justify-end px-5 pt-32 pb-20 sm:px-6 md:px-10 lg:px-14">
+      <p className="eyebrow text-walnut">404</p>
+      <h1 className="mt-4 max-w-3xl font-serif text-[clamp(3rem,7vw,6rem)] font-light">
+        This page could not be found.
       </h1>
-      <p className="mt-5 max-w-md text-ivory/80">The address may have changed, or the page has not been published.</p>
+      <p className="mt-5 max-w-md text-walnut">The address may be incorrect, or the page has not been published.</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button href="/" variant="light">
-          Home
-        </Button>
-        <Button href="/projects" variant="ghost" className="border-ivory text-ivory hover:bg-ivory/10">
+        <Button href="/">Home</Button>
+        <Button href="/projects" variant="ghost">
           Projects
         </Button>
       </div>

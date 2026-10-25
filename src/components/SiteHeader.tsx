@@ -3,12 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { navigation, siteConfig } from "@/data/site";
 import { Button } from "@/components/Button";
+import { Wordmark } from "@/components/Wordmark";
+import { navigation } from "@/data/site";
 
 function isActive(href: string, pathname: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function usesOverlay(pathname: string) {
+  if (pathname === "/" || pathname === "/about" || pathname === "/services") return true;
+  return pathname.startsWith("/projects/");
 }
 
 export function SiteHeader() {
@@ -18,8 +24,9 @@ export function SiteHeader() {
   const open = menuPath === pathname;
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-  const overlay = pathname !== "/contact" && pathname !== "/privacy";
+  const overlay = usesOverlay(pathname);
   const solid = !overlay || scrolled || open;
+  const tone = solid ? "text-charcoal" : "text-ivory";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -29,21 +36,33 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuPath(null);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     const main = document.getElementById("content");
     const footer = document.querySelector("footer");
+    const skip = document.querySelector(".skip-link");
     if (open) {
       main?.setAttribute("inert", "");
       footer?.setAttribute("inert", "");
+      skip?.setAttribute("inert", "");
       firstLinkRef.current?.focus();
     } else {
       main?.removeAttribute("inert");
       footer?.removeAttribute("inert");
+      skip?.removeAttribute("inert");
     }
     return () => {
       document.body.style.overflow = "";
       main?.removeAttribute("inert");
       footer?.removeAttribute("inert");
+      skip?.removeAttribute("inert");
     };
   }, [open]);
 
@@ -59,79 +78,79 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const tone = solid ? "text-charcoal" : "text-ivory";
+  function closeMenu() {
+    setMenuPath(null);
+  }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
         className={`relative z-50 border-b transition-colors duration-300 ${
-          solid ? "border-stone bg-ivory/95 backdrop-blur-md" : "border-transparent bg-transparent"
+          solid ? "border-line bg-ivory/95 backdrop-blur-md" : "border-transparent bg-transparent"
         }`}
       >
-      <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between gap-6 px-6 md:px-10 lg:px-16">
-        <Link href="/" className={`leading-none ${tone}`} aria-label={`${siteConfig.name} home`}>
-          <span className="block font-serif text-[1.7rem] tracking-tight">Ascent</span>
-          <span className="mt-1 block text-[0.58rem] tracking-[0.28em] uppercase">Design Studios</span>
-        </Link>
+        <div className="mx-auto flex h-20 max-w-[1520px] items-center justify-between gap-6 px-5 sm:px-6 md:px-10 lg:px-14">
+          <Wordmark tone={solid ? "dark" : "light"} />
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
-          {navigation.map((item) => {
-            const active = isActive(item.href, pathname);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`text-[0.7rem] tracking-[0.18em] uppercase transition-opacity hover:opacity-60 ${tone} ${
-                  active ? "opacity-100" : "opacity-90"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+            {navigation.map((item) => {
+              const active = isActive(item.href, pathname);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`link-underline text-[0.72rem] tracking-[0.18em] uppercase ${tone} ${
+                    active ? "opacity-100" : "opacity-80 hover:opacity-100"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="hidden md:block">
-            <Button href="/contact" variant={solid ? "solid" : "light"}>
-              Book a Consultation
-            </Button>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              <Button href="/contact" variant={solid ? "solid" : "light"}>
+                Start a project
+              </Button>
+            </div>
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className={`inline-flex min-h-11 items-center px-1 text-[0.72rem] tracking-[0.18em] uppercase lg:hidden ${tone}`}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => setMenuPath(open ? null : pathname)}
+            >
+              {open ? "Close" : "Menu"}
+            </button>
           </div>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            className={`inline-flex min-h-11 items-center px-1 text-[0.68rem] tracking-[0.18em] uppercase lg:hidden ${tone}`}
-            aria-expanded={open}
-            aria-controls="mobile-navigation"
-            onClick={() => setMenuPath(open ? null : pathname)}
-          >
-            {open ? "Close" : "Menu"}
-          </button>
         </div>
-      </div>
       </div>
 
       {open && (
         <div
           id="mobile-navigation"
-          className="fixed inset-0 z-40 overflow-y-auto bg-ivory px-6 pt-28 pb-12 lg:hidden"
+          className="fixed inset-0 z-40 overflow-y-auto bg-ivory px-5 pt-28 pb-12 sm:px-6 lg:hidden"
         >
-          <nav className="flex flex-col gap-5" aria-label="Mobile">
+          <nav className="flex flex-col" aria-label="Mobile">
             {navigation.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
                 ref={index === 0 ? firstLinkRef : undefined}
                 aria-current={isActive(item.href, pathname) ? "page" : undefined}
-                className="font-serif text-5xl text-charcoal"
+                onClick={closeMenu}
+                className="border-b border-line py-4 font-serif text-[clamp(2.4rem,10vw,3.4rem)] leading-none text-charcoal"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <Button href="/contact" className="mt-10">
-            Book a Consultation
+          <Button href="/contact" className="mt-8" onClick={closeMenu}>
+            Start a project
           </Button>
         </div>
       )}

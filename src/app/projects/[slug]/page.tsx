@@ -53,12 +53,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
 
   const related = getRelatedProjects(project.slug);
   const { previous, next } = getAdjacentProjects(project.slug);
-  const meta = [
-    project.sample ? "Sample project" : null,
-    project.category,
-    project.location,
-    project.year,
-  ]
+  const meta = [project.sample ? "Illustrative sample" : null, project.location, project.year]
     .filter(Boolean)
     .join(" · ");
 
@@ -82,26 +77,27 @@ async function ProjectContent({ params }: ProjectPageProps) {
 
   return (
     <>
-      <HeroSection variant="project" eyebrow="Project" title={project.title} meta={meta} image={project.hero} />
+      <HeroSection variant="project" eyebrow={project.category} title={project.title} meta={meta} image={project.hero} />
 
       <section className="py-16 md:py-24">
         <Container>
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="text-[0.72rem] tracking-[0.22em] uppercase">Project overview</p>
-              <p className="mt-6 font-serif text-3xl leading-snug md:text-4xl">{project.brief}</p>
+              <p className="eyebrow text-walnut">Overview</p>
+              <p className="mt-6 font-serif text-3xl leading-snug md:text-4xl">{project.excerpt}</p>
 
-              <h2 className="mt-12 font-serif text-3xl">Client objectives</h2>
+              <h2 className="mt-12 font-serif text-3xl">Design brief</h2>
+              <p className="mt-4 text-base leading-relaxed">{project.brief}</p>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed">
                 {project.objectives.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
 
-              <h2 className="mt-12 font-serif text-3xl">Design concept</h2>
+              <h2 className="mt-12 font-serif text-3xl">Creative concept</h2>
               <p className="mt-4 text-base leading-relaxed">{project.concept}</p>
 
-              <h2 className="mt-12 font-serif text-3xl">Challenges and solutions</h2>
+              <h2 className="mt-12 font-serif text-3xl">Design considerations and solutions</h2>
               <div className="mt-4 grid gap-8 md:grid-cols-2">
                 <div>
                   <h3 className="text-[0.68rem] tracking-[0.16em] uppercase">Challenges</h3>
@@ -121,7 +117,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
                 </div>
               </div>
 
-              <h2 className="mt-12 font-serif text-3xl">Materials and finishes</h2>
+              <h2 className="mt-12 font-serif text-3xl">Material palette</h2>
               <ul className="mt-4 divide-y divide-stone border-y border-stone">
                 {project.materials.map((item) => (
                   <li key={item} className="py-3 text-sm">
@@ -130,7 +126,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
                 ))}
               </ul>
 
-              <h2 className="mt-12 font-serif text-3xl">Spatial planning</h2>
+              <h2 className="mt-12 font-serif text-3xl">Spatial approach</h2>
               <p className="mt-4 text-base leading-relaxed">{project.spatialApproach}</p>
             </div>
 
@@ -209,9 +205,9 @@ async function ProjectContent({ params }: ProjectPageProps) {
       </nav>
 
       <CallToAction
-        title="Envisioning a Space of Your Own?"
+        title="Let's create something meaningful."
         href="/contact"
-        label="Start Your Project"
+        label="Start a project"
         image={{
           src: "/images/haven-1.jpg",
           alt: "Hotel bedroom in warm timber, with doors opening to a planted court.",

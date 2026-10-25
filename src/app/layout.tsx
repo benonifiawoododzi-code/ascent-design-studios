@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { MotionReady } from "@/components/MotionReady";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getSocialLinks, siteConfig } from "@/data/site";
@@ -36,9 +37,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/services-hero.jpg",
-        width: 1800,
-        height: 1200,
-        alt: "Sunlit dining room with a black table and a view into a timber-lined living space.",
+        alt: "Dining room with a black table, a stone-clad stair, and a view toward a timber-lined living space.",
       },
     ],
   },
@@ -71,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ivory font-sans text-charcoal">
+        <MotionReady />
         <a href="#content" className="skip-link">
           Skip to content
         </a>

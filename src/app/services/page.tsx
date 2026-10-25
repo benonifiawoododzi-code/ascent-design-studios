@@ -4,18 +4,19 @@ import { Container } from "@/components/Container";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceSection } from "@/components/ServiceSection";
 import { services } from "@/data/services";
+import { siteConfig } from "@/data/site";
 import { getProjectsByCategory } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Services",
   description:
-    "Residential, commercial, and hospitality interior design by Ascent Design Studios. Scope and deliverables are confirmed for each project.",
+    "Residential interiors, commercial interiors, and hospitality design by Studio Phoenix. Scope is confirmed for each project.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Our Services — Ascent Design Studios",
+    title: `Services — ${siteConfig.name}`,
     description:
-      "Residential, commercial, and hospitality interior design. Scope and deliverables are confirmed for each project.",
-    images: [{ url: "/images/form-1.jpg", alt: "Dusk view of a timber and glass house." }],
+      "Residential, commercial, and hospitality interiors. Scope and deliverables are confirmed for each project.",
+    images: [{ url: "/images/form-3.jpg", alt: "Living room with pale sofas, a timber stair, and tall windows." }],
   },
 };
 
@@ -24,19 +25,18 @@ export default function ServicesPage() {
     <>
       <HeroSection
         variant="page"
-        eyebrow="Our Services"
+        eyebrow="Services"
         title="Interiors with a clear purpose."
-        description="Three practices, one way of working. Layout, material, and use are resolved together."
+        description="Three areas of work, one way of designing. Layout, material, and use are resolved together."
         image={{
-          src: "/images/form-1.jpg",
-          alt: "Dusk view of a timber and glass house, with the dining room visible through the glazing.",
+          src: "/images/form-3.jpg",
+          alt: "Living room with pale sofas, a timber stair, and tall windows along one side.",
         }}
       />
       <Container className="py-16 md:py-24">
         <p className="max-w-2xl text-base leading-relaxed md:text-lg">
-          Ascent Design Studios designs residential, commercial, and hospitality spaces. The lists
-          on this page are editable descriptions of the work the studio can offer. What is included
-          in a commission is confirmed in writing.
+          {siteConfig.name} designs residential, commercial, and hospitality interiors. The lists on this
+          page describe work the studio can offer. What is included in a commission is confirmed in writing.
         </p>
         {services.map((service, index) => (
           <ServiceSection
@@ -49,13 +49,13 @@ export default function ServicesPage() {
         ))}
       </Container>
       <CallToAction
-        title="Let's Create Something Exceptional."
+        title="Let's create something meaningful."
         description="Tell us about the space, and we can explore whether the studio is the right fit."
         href="/contact"
-        label="Book a Consultation"
+        label="Start a project"
         image={{
-          src: "/images/form-3.jpg",
-          alt: "Living room with pale sofas, a timber stair, and tall windows along one side.",
+          src: "/images/atelier-2.jpg",
+          alt: "Meeting room with a timber table, pink chairs, and tall industrial windows.",
         }}
       />
     </>

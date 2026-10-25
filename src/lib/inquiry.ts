@@ -11,11 +11,14 @@ export type InquiryPayload = {
   startDate: string;
   description: string;
   contactMethod: string;
+  consent: boolean;
   companyWebsite: string;
   renderedAt: number;
 };
 
-export type InquiryErrors = Partial<Record<"fullName" | "email" | "phone" | "category" | "location" | "description", string>>;
+export type InquiryErrors = Partial<
+  Record<"fullName" | "email" | "phone" | "category" | "location" | "description" | "consent", string>
+>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^[0-9+().\-\s]{7,40}$/;
@@ -32,6 +35,7 @@ export function emptyInquiry(): InquiryPayload {
     startDate: "",
     description: "",
     contactMethod: "",
+    consent: false,
     companyWebsite: "",
     renderedAt: 0,
   };
@@ -57,6 +61,7 @@ export function readInquiry(value: unknown): InquiryPayload | null {
     startDate: asText(input.startDate, 40),
     description: asText(input.description, 4000),
     contactMethod: asText(input.contactMethod, 40),
+    consent: input.consent === true,
     companyWebsite: asText(input.companyWebsite, 200),
     renderedAt,
   };
@@ -77,13 +82,16 @@ export function validateInquiry(input: InquiryPayload): InquiryErrors {
     errors.phone = "Enter a valid phone number, or leave this blank.";
   }
   if (!inquiryOptions.categories.includes(input.category as (typeof inquiryOptions.categories)[number])) {
-    errors.category = "Select a project category.";
+    errors.category = "Select a project type.";
   }
   if (input.location.length < 2) {
     errors.location = "Please tell us where the project is.";
   }
   if (input.description.length < 20) {
     errors.description = "Describe the project in at least a sentence.";
+  }
+  if (!input.consent) {
+    errors.consent = "Please confirm that you understand how this form handles your inquiry.";
   }
 
   return errors;

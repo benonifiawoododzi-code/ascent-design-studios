@@ -3,13 +3,17 @@ import { Suspense } from "react";
 import { ConsultationForm } from "@/components/ConsultationForm";
 import { ContactDetails } from "@/components/ContactDetails";
 import { Container } from "@/components/Container";
+import { siteConfig } from "@/data/site";
 import { isInquiryDeliveryConfigured } from "@/lib/delivery";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Tell Ascent Design Studios about your interior project and request a consultation.",
+  description: "Tell Studio Phoenix about your space and begin a project conversation.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: `Contact — ${siteConfig.name}`,
+    description: "Every project starts with a conversation. Share a little about your ideas.",
+  },
 };
 
 export default function ContactPage() {
@@ -18,13 +22,13 @@ export default function ContactPage() {
   return (
     <section className="pt-32 pb-20 md:pt-40 md:pb-28">
       <Container>
-        <div className="grid gap-16 lg:grid-cols-12">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
-            <p className="text-[0.72rem] tracking-[0.22em] uppercase">Contact</p>
-            <h1 className="mt-4 font-serif text-[clamp(3rem,6vw,5.4rem)]">Tell Us About Your Project.</h1>
+            <p className="eyebrow text-walnut">Contact</p>
+            <h1 className="mt-4 font-serif text-[clamp(3rem,6vw,5.4rem)]">Tell us about your space.</h1>
             <p className="mt-6 max-w-md text-base leading-relaxed">
-              Every exceptional space begins with a conversation. Share your ideas, goals, and
-              project requirements, and our team can explore the next steps with you.
+              Every project starts with a conversation. Share a little about your ideas, and let&apos;s explore
+              the possibilities.
             </p>
             <div className="mt-10">
               <ContactDetails />

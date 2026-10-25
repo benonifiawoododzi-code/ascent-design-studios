@@ -1,6 +1,9 @@
 import { getSocialLinks, getWhatsAppHref, siteConfig } from "@/data/site";
 
-export function ContactDetails() {
+export function ContactDetails({ variant = "default" }: { variant?: "default" | "inverse" }) {
+  const inverse = variant === "inverse";
+  const muted = inverse ? "text-ivory/55" : "text-walnut";
+  const value = inverse ? "text-ivory" : "text-charcoal";
   const whatsapp = getWhatsAppHref();
   const phoneHref = siteConfig.phone ? `tel:${siteConfig.phone.replace(/[^\d+]/g, "")}` : "";
   const rows = [
@@ -16,9 +19,10 @@ export function ContactDetails() {
 
   if (rows.length === 0 && !whatsapp && social.length === 0) {
     return (
-      <p className="max-w-sm text-sm leading-relaxed text-charcoal/80">
-        Studio email, telephone, and location will be published here once they are confirmed.
-      </p>
+      <div className={`max-w-sm space-y-4 text-sm leading-relaxed ${inverse ? "text-ivory/75" : "text-walnut"}`}>
+        <p>Email, telephone, and location will be published here once the studio confirms them.</p>
+        <p>Social profiles will appear here when they are confirmed.</p>
+      </div>
     );
   }
 
@@ -28,10 +32,10 @@ export function ContactDetails() {
         <dl className="space-y-4">
           {rows.map((row) => (
             <div key={row.label}>
-              <dt className="text-[0.68rem] tracking-[0.18em] uppercase text-charcoal/70">{row.label}</dt>
-              <dd className="mt-1 text-base">
+              <dt className={`text-[0.68rem] tracking-[0.18em] uppercase ${muted}`}>{row.label}</dt>
+              <dd className={`mt-1 text-base ${value}`}>
                 {row.href ? (
-                  <a href={row.href} className="hover:text-olive">
+                  <a href={row.href} className="link-underline">
                     {row.value}
                   </a>
                 ) : (
@@ -43,20 +47,34 @@ export function ContactDetails() {
         </dl>
       )}
       {whatsapp && (
-        <a href={whatsapp} className="inline-flex text-[0.72rem] tracking-[0.16em] uppercase hover:text-olive" target="_blank" rel="noopener noreferrer">
+        <a
+          href={whatsapp}
+          className={`link-underline inline-flex text-[0.72rem] tracking-[0.16em] uppercase ${value}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           WhatsApp the studio
         </a>
       )}
-      {social.length > 0 && (
+      {social.length > 0 ? (
         <ul className="flex flex-wrap gap-x-5 gap-y-2">
           {social.map((item) => (
             <li key={item.label}>
-              <a href={item.href} className="text-[0.72rem] tracking-[0.16em] uppercase hover:text-olive" target="_blank" rel="noopener noreferrer">
+              <a
+                href={item.href}
+                className={`link-underline text-[0.72rem] tracking-[0.16em] uppercase ${value}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
+      ) : (
+        <p className={`text-sm leading-relaxed ${inverse ? "text-ivory/75" : "text-walnut"}`}>
+          Social profiles will appear here when they are confirmed.
+        </p>
       )}
     </div>
   );

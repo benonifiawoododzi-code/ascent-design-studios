@@ -98,7 +98,7 @@ export const projects: Project[] = [
   },
   {
     slug: "the-form-house",
-    title: "The Form House",
+    title: "Form House",
     category: "Residential",
     location: "Copenhagen",
     sample: true,
@@ -165,8 +165,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "the-atelier-workspace",
-    title: "The Atelier Workspace",
+    slug: "the-atelier",
+    title: "The Atelier",
     category: "Commercial",
     location: "London",
     sample: true,
@@ -174,8 +174,8 @@ export const projects: Project[] = [
     excerpt:
       "A sample studio workplace planned for focused work, with a material palette of plaster, timber, and steel.",
     cover: photo(
-      "atelier-1.jpg",
-      "Long office interior with a pale floor, dark walls, and a glass-lined corridor.",
+      "atelier-2.jpg",
+      "Meeting room with a timber table, pink chairs, and tall industrial windows.",
     ),
     hero: photo(
       "atelier-2.jpg",
@@ -279,7 +279,7 @@ export const projects: Project[] = [
     category: "Residential",
     location: "Paris",
     sample: true,
-    featured: true,
+    featured: false,
     excerpt:
       "A sample apartment edited back to a few materials, with storage absorbed into the architecture.",
     cover: photo(
@@ -327,14 +327,14 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "the-north-room",
-    title: "The North Room",
+    slug: "the-courtyard-workspace",
+    title: "The Courtyard Workspace",
     category: "Commercial",
     location: "Amsterdam",
     sample: true,
     featured: true,
     excerpt:
-      "A sample reception and meeting suite for a professional firm, tuned for acoustic comfort.",
+      "A sample workplace planned as a quiet sequence of arrival, meeting, and focused work.",
     cover: photo(
       "north-2.jpg",
       "Office corridor lined with black-framed glass rooms, with a lounge visible beyond the glass.",
@@ -351,7 +351,7 @@ export const projects: Project[] = [
       "Avoid a generic corporate fit-out",
     ],
     concept:
-      "A north-lit room finished in timber, wool, and a single deep color on the meeting-room wall. Branding is limited to the way the rooms are arranged.",
+      "A quiet client suite finished in timber, wool, and a single deep color on the meeting-room wall. The organisation is present in the arrangement of the rooms, not in applied graphics.",
     challenges: [
       "Hard surfaces that made conversation brittle",
       "A reception desk that blocked the view into the suite",
@@ -438,17 +438,17 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "the-stone-house",
-    title: "The Stone House",
+    slug: "terra-house",
+    title: "Terra House",
     category: "Residential",
     location: "Hudson Valley",
     sample: true,
-    featured: false,
+    featured: true,
     excerpt:
       "A sample study in pairing a heavy stone shell with a lighter interior. The comparison on this page is a demonstration, not a documented renovation.",
     cover: photo(
-      "stone-1.jpg",
-      "Dusk photograph of a dark metal and timber house, with a lit entry and stone at the base.",
+      "stone-2.jpg",
+      "Living room with a white sofa, a gallery wall, and sheer curtains.",
     ),
     hero: photo(
       "stone-1.jpg",

@@ -1,5 +1,5 @@
 const filters = [
-  { id: "all", label: "All Projects" },
+  { id: "all", label: "All" },
   { id: "Residential", label: "Residential" },
   { id: "Commercial", label: "Commercial" },
   { id: "Hospitality", label: "Hospitality" },
@@ -22,11 +22,11 @@ export function ProjectFilters({
             type="button"
             aria-pressed={selected}
             onClick={() => onChange(filter.id)}
-            className={`min-h-11 text-[0.72rem] tracking-[0.18em] uppercase ${
-              selected ? "text-charcoal" : "text-charcoal/55 hover:text-charcoal"
+            className={`min-h-11 text-[0.72rem] tracking-[0.18em] uppercase transition-colors ${
+              selected ? "text-charcoal" : "text-walnut hover:text-charcoal"
             }`}
           >
-            <span className={selected ? "border-b border-charcoal pb-1" : ""}>{filter.label}</span>
+            <span className={selected ? "border-b border-charcoal pb-1" : "link-underline"}>{filter.label}</span>
           </button>
         );
       })}

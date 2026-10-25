@@ -18,7 +18,7 @@ export function ProjectCard({
   aspect?: keyof typeof aspects;
   priority?: boolean;
 }) {
-  const meta = [project.category, project.sample ? "Sample" : null, project.location, project.year]
+  const meta = [project.category, project.location, project.year, project.sample ? "Sample" : null]
     .filter(Boolean)
     .join(" · ");
 
@@ -31,16 +31,22 @@ export function ProjectCard({
             alt={project.cover.alt}
             fill
             priority={priority}
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            sizes="(min-width: 1024px) 46vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
             style={{ objectPosition: project.cover.objectPosition ?? "center" }}
           />
         </div>
-        <div className="mt-4 flex items-baseline justify-between gap-4 transition-transform duration-500 group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
+        <div className="mt-4 flex items-end justify-between gap-4">
           <div>
-            <h3 className="font-serif text-[1.7rem] leading-none">{project.title}</h3>
-            <p className="mt-2 text-[0.68rem] tracking-[0.16em] uppercase text-charcoal/75">{meta}</p>
+            <h3 className="font-serif text-[clamp(1.7rem,2vw,2.15rem)] leading-none">{project.title}</h3>
+            <p className="mt-2 text-[0.72rem] tracking-[0.14em] text-walnut uppercase">{meta}</p>
           </div>
+          <span className="inline-flex shrink-0 items-center gap-2 pb-1 text-[0.68rem] tracking-[0.16em] text-walnut uppercase transition-all duration-300 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-visible:translate-y-0 lg:group-focus-visible:opacity-100">
+            View
+            <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none">
+              <path d="M3 9h12M11 5l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1" />
+            </svg>
+          </span>
         </div>
       </Link>
     </article>

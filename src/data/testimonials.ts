@@ -6,25 +6,26 @@ export type Testimonial = {
   placeholder: boolean;
 };
 
+/**
+ * Replace a placeholder with a verified client comment, then set placeholder to false.
+ * Do not add names, companies, or endorsements that the studio has not approved.
+ */
 export const testimonials: Testimonial[] = [
   {
-    quote:
-      "Sample quotation for the residential layout. Replace this sentence with approved client feedback before publication.",
-    attribution: "Sample attribution",
+    quote: "A verified comment from a residential client will be placed here.",
+    attribution: "Client name awaiting confirmation",
     category: "Residential",
     placeholder: true,
   },
   {
-    quote:
-      "Sample quotation for the commercial layout. Replace this sentence with approved client feedback before publication.",
-    attribution: "Sample attribution",
+    quote: "A verified comment from a commercial client will be placed here.",
+    attribution: "Client name awaiting confirmation",
     category: "Commercial",
     placeholder: true,
   },
   {
-    quote:
-      "Sample quotation for the hospitality layout. Replace this sentence with approved client feedback before publication.",
-    attribution: "Sample attribution",
+    quote: "A verified comment from a hospitality client will be placed here.",
+    attribution: "Client name awaiting confirmation",
     category: "Hospitality",
     placeholder: true,
   },

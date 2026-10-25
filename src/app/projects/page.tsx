@@ -2,59 +2,58 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { CallToAction } from "@/components/CallToAction";
 import { Container } from "@/components/Container";
-import { HeroSection } from "@/components/HeroSection";
 import { ProjectBrowser } from "@/components/ProjectBrowser";
 import { ProjectGrid } from "@/components/ProjectGrid";
-import { projects } from "@/data/projects";
-import { hasSampleProjects } from "@/lib/projects";
+import { siteConfig } from "@/data/site";
+import { getAllProjects, hasSampleProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Residential, commercial, and hospitality interiors by Ascent Design Studios. Projects marked Sample are illustrative placeholders.",
+    "An editorial portfolio of residential, commercial, and hospitality interiors. Projects marked Sample are illustrative placeholders.",
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: "Projects — Ascent Design Studios",
-    description:
-      "An image-led portfolio of interiors. Entries marked Sample are illustrative placeholders.",
-    images: [{ url: "/images/form-3.jpg", alt: "Living room with pale sofas and a timber stair." }],
+    title: `Projects — ${siteConfig.name}`,
+    description: "An image-led portfolio of interiors. Entries marked Sample are illustrative placeholders.",
+    images: [{ url: "/images/intro.jpg", alt: "Open living room with a timber feature wall and a view to the terrace." }],
   },
 };
 
 export default function ProjectsPage() {
+  const projects = getAllProjects();
+
   return (
     <>
-      <HeroSection
-        variant="page"
-        eyebrow="Projects"
-        title="Selected work."
-        description="Residential, commercial, and hospitality interiors, edited as an image-led portfolio."
-        image={{
-          src: "/images/form-3.jpg",
-          alt: "Living room with pale sofas, a timber stair, and tall windows along one side.",
-        }}
-      />
-      <section className="py-16 md:py-24">
+      <section className="pt-32 pb-6 md:pt-40">
         <Container>
+          <p className="eyebrow text-walnut">Portfolio</p>
+          <h1 className="mt-4 max-w-3xl font-serif text-[clamp(3rem,6vw,5.6rem)]">Selected work.</h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed">
+            Residential, commercial, and hospitality interiors, edited as an image-led portfolio.
+          </p>
           {hasSampleProjects() && (
-            <p className="mb-10 max-w-2xl text-sm leading-relaxed">
-              Projects marked Sample are illustrative placeholders for layout and storytelling.
-              Replace them in the project content when studio work is ready to publish.
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-walnut">
+              Projects marked Sample are illustrative placeholders. Replace them in the project content when
+              studio work is ready to publish. Locations in those studies are part of the sample narrative.
             </p>
           )}
+        </Container>
+      </section>
+      <section className="pb-20 md:pb-28">
+        <Container>
           <Suspense fallback={<ProjectGrid projects={projects} />}>
             <ProjectBrowser projects={projects} />
           </Suspense>
         </Container>
       </section>
       <CallToAction
-        title="Let's Create Something Exceptional."
-        description="Have a space in mind? Tell us about your project, and let's explore how thoughtful design can transform it."
+        title="Let's create something meaningful."
+        description="Have a space in mind? Tell us what you're envisioning, and let's begin the conversation."
         href="/contact"
-        label="Book a Consultation"
+        label="Start a project"
         image={{
-          src: "/images/haven-1.jpg",
-          alt: "Hotel bedroom in warm timber, with doors opening to a planted court.",
+          src: "/images/courtyard-1.jpg",
+          alt: "Restaurant dining room with dark timber floors, black chairs, and brass screens.",
         }}
       />
     </>

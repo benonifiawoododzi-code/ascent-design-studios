@@ -62,11 +62,12 @@ export async function POST(request: Request) {
 
   const size = optionalChoice(inquiry.size, inquiryOptions.sizes);
   const budget = optionalChoice(inquiry.budget, inquiryOptions.budgets);
+  const timeline = optionalChoice(inquiry.startDate, inquiryOptions.timelines);
   const contactMethod = optionalChoice(inquiry.contactMethod, inquiryOptions.contactMethods);
   const safeName = inquiry.fullName.replace(/[\r\n]/g, " ");
 
   const text = [
-    "New project inquiry for Ascent Design Studios",
+    `New project inquiry for ${siteConfig.name}`,
     "",
     `Name: ${safeName}`,
     `Email: ${inquiry.email}`,
@@ -75,7 +76,7 @@ export async function POST(request: Request) {
     `Location: ${inquiry.location}`,
     `Approximate size: ${size || "Not provided"}`,
     `Estimated budget: ${budget || "Not provided"}`,
-    `Expected start: ${inquiry.startDate || "Not provided"}`,
+    `Desired timeline: ${timeline || "Not provided"}`,
     `Preferred contact: ${contactMethod || "Not provided"}`,
     "",
     "Project description:",

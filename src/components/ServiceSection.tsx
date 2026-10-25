@@ -32,7 +32,7 @@ export function ServiceSection({
           <h2 className="mt-4 font-serif text-[clamp(2.4rem,4vw,4rem)]">{service.pageTitle}</h2>
           <p className="mt-6 text-base leading-relaxed">{service.overview}</p>
 
-          <h3 className="mt-10 font-serif text-2xl">What this service can cover</h3>
+          <h3 className="mt-10 font-serif text-2xl">What this can include</h3>
           <ul className="mt-4 divide-y divide-stone border-y border-stone">
             {service.covers.map((item) => (
               <li key={item} className="py-3 text-sm">
@@ -41,7 +41,7 @@ export function ServiceSection({
             ))}
           </ul>
 
-          <h3 className="mt-10 font-serif text-2xl">Design considerations</h3>
+          <h3 className="mt-10 font-serif text-2xl">Typical client requirements</h3>
           <ul className="mt-4 space-y-3 text-sm leading-relaxed">
             {service.considerations.map((item) => (
               <li key={item}>{item}</li>
@@ -77,7 +77,7 @@ export function ServiceSection({
           )}
 
           <Button href={`/contact?service=${service.id}`} className="mt-10">
-            Discuss Your Project
+            Discuss your project
           </Button>
         </div>
       </div>

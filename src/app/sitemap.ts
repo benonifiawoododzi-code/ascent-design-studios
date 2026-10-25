@@ -3,7 +3,7 @@ import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/services", "/projects", "/contact", "/privacy"];
+  const routes = ["", "/about", "/services", "/projects", "/contact", "/privacy"];
 
   return [
     ...routes.map((route) => ({

@@ -3,27 +3,30 @@ export const processSteps = [
     number: "01",
     title: "Discover",
     description:
-      "Understand the client's vision, needs, budget, and project requirements.",
+      "Understand the client, brief, aspirations, constraints, and project requirements.",
   },
   {
     number: "02",
-    title: "Conceptualize",
+    title: "Concept",
     description:
-      "Develop the creative direction, mood boards, material palette, and spatial strategy.",
+      "Establish the creative direction, spatial strategy, material palette, and atmosphere.",
   },
   {
     number: "03",
-    title: "Design",
-    description: "Refine layouts, finishes, lighting, furniture, and technical details.",
+    title: "Develop",
+    description:
+      "Refine layouts, finishes, lighting, furniture, and relevant design documentation.",
   },
   {
     number: "04",
     title: "Deliver",
-    description: "Coordinate implementation according to the agreed project scope.",
+    description:
+      "Coordinate the agreed design scope and implementation with the appropriate project partners.",
   },
   {
     number: "05",
     title: "Complete",
-    description: "Finalize styling, review details, and present the completed space.",
+    description:
+      "Review the final details and present the finished design according to the agreed scope.",
   },
 ] as const;

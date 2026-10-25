@@ -4,7 +4,7 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Ascent Design Studios handles project inquiries submitted through this website.",
+  description: `How ${siteConfig.name} handles project inquiries submitted through this website.`,
   alternates: { canonical: "/privacy" },
 };
 
